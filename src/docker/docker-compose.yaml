@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  postgres:
+    image: mysql:5.7
+    container_name: poker
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=poker
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_USER=player
+      - MYSQL_USER_PASSWORD=1234
