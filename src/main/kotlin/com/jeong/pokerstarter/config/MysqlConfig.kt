@@ -19,21 +19,20 @@ class MysqlConfig (
 
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
-    fun mysqlDataSource(): DataSource {
+    fun dataSource(): DataSource {
         return DataSourceBuilder.create()
             .type(HikariDataSource::class.java)
             .build()
     }
 
     @Bean
-    fun mysqlEntityManagerFactory(
-        builder: EntityManagerFactoryBuilder, mysqlDataSource: DataSource
+    fun entityManagerFactory(
+        builder: EntityManagerFactoryBuilder, dataSource: DataSource
     ): LocalContainerEntityManagerFactoryBean {
         return builder
-            .dataSource(mysqlDataSource)
+            .dataSource(dataSource)
             .packages(
-                // entity 위치
-                "tv.anypoint.pi.meta.domain"
+                "com.jeong.pokerstarter.entity"
             )
             .properties(
                 mutableMapOf(
@@ -49,9 +48,9 @@ class MysqlConfig (
     }
 
     @Bean
-    fun mysqlPiTransactionManager(
-        mysqlEntityManagerFactory: EntityManagerFactory
+    fun transactionManager(
+        entityManagerFactory: EntityManagerFactory
     ): PlatformTransactionManager {
-        return JpaTransactionManager(mysqlEntityManagerFactory)
+        return JpaTransactionManager(entityManagerFactory)
     }
 }
