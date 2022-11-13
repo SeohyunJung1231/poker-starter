@@ -18,15 +18,15 @@ class MysqlConfig (
 ) {
 
     @Bean
-    @ConfigurationProperties(prefix = "mysql.datasource")
-    fun mysqlPiDataSource(): DataSource {
+    @ConfigurationProperties(prefix = "spring.datasource")
+    fun mysqlDataSource(): DataSource {
         return DataSourceBuilder.create()
             .type(HikariDataSource::class.java)
             .build()
     }
 
     @Bean
-    fun mysqlPiEntityManagerFactory(
+    fun mysqlEntityManagerFactory(
         builder: EntityManagerFactoryBuilder, mysqlDataSource: DataSource
     ): LocalContainerEntityManagerFactoryBean {
         return builder
@@ -44,14 +44,14 @@ class MysqlConfig (
                     )
                 )
             )
-            .persistenceUnit("kibaMysql")
+            .persistenceUnit("mysql")
             .build()
     }
 
     @Bean
     fun mysqlPiTransactionManager(
-        @Qualifier("mysqlPiEntityManagerFactory") mysqlPiEntityManagerFactory: EntityManagerFactory
+        mysqlEntityManagerFactory: EntityManagerFactory
     ): PlatformTransactionManager {
-        return JpaTransactionManager(mysqlPiEntityManagerFactory)
+        return JpaTransactionManager(mysqlEntityManagerFactory)
     }
 }
