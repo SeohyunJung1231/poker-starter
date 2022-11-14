@@ -44,7 +44,7 @@ internal class CardServiceTest(
             val holdCount = 5
             val holdCards = cards.shuffled().take(holdCount)
             val actual = service.findCardsByRandom(except = holdCards)
-            then("return 카드 아무것도 주지 않는다.") {
+            then("return 카드를 아무것도 주지 않는다.") {
                 actual.size shouldBe 0
             }
         }
