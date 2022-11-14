@@ -9,7 +9,7 @@ import javax.persistence.Id
 class Card(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long = 0,
 
     val type: String
 

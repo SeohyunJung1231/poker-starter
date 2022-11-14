@@ -1,6 +1,6 @@
 package com.jeong.pokerstarter.controller
 
-import com.jeong.pokerstarter.CardService
+import com.jeong.pokerstarter.service.CardService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam

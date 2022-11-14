@@ -1,4 +1,4 @@
-package com.jeong.pokerstarter
+package com.jeong.pokerstarter.service
 
 import com.jeong.pokerstarter.repository.CardRepository
 import org.springframework.stereotype.Service
